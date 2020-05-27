@@ -22,6 +22,7 @@ Write a recursive function which verifies the balancing of parentheses in a stri
 
 - (if (zero? x) max (/ 1 x))
 - I told him (that it’s not (yet) done). (But he wasn’t listening)
+
 The function should return false for the following strings:
 
 - :-)
