@@ -18,7 +18,7 @@ object RecFun extends RecFunInterface {
     if (c < 0 || r < 0 )
         throw new RuntimeException("Le colonne e le righe passate devono essere maggiori di zero")
     else{
-      if (c == 0 || r==0) 1 else pascal(c - 1, r - 1) + pascal(c, r - 1)
+      if (c == 0 || r==0 || c == r) 1 else pascal(c - 1, r - 1) + pascal(c, r - 1)
     }
   }
 
@@ -54,5 +54,12 @@ object RecFun extends RecFunInterface {
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = {0}
+  def countChange(money: Int, coins: List[Int]): Int = {
+    if (coins.isEmpty || money < 0) {
+      0
+    } else if (money == 0){
+      1
+    }
+    else countChange(money - coins.head, coins) + countChange(money , coins.tail)
+  }
 }
