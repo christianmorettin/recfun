@@ -26,10 +26,33 @@ object RecFun extends RecFunInterface {
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = {
+    def parBalance(chars: List[Char], parOpen: Int): Boolean = {
+      if (parOpen < 0){
+        //ci sono più parentesi chiuse che aperte
+        false
+      }else
+      if (chars.isEmpty) {
+        parOpen == 0
+      }else
+      if (chars.head == '(') {
+        parBalance(chars.tail, parOpen + 1)
+      } else
+      if (chars.head == ')') {
+        parBalance(chars.tail, parOpen - 1)
+      }
+      else{
+        parBalance(chars.tail, parOpen)
+      }
+
+    }
+
+    parBalance(chars, 0)
+
+  }
 
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {0}
 }
