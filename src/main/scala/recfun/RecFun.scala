@@ -18,7 +18,7 @@ object RecFun extends RecFunInterface {
     if (c < 0 || r < 0 )
         throw new RuntimeException("Le colonne e le righe passate devono essere maggiori di zero")
     else{
-      if (c == 0 || r==0 || c == r) 1 else pascal(c - 1, r - 1) + pascal(c, r - 1)
+      if (c == 0 || c == r) 1 else pascal(c - 1, r - 1) + pascal(c, r - 1)
     }
   }
 
@@ -31,19 +31,16 @@ object RecFun extends RecFunInterface {
       if (parOpen < 0){
         //ci sono più parentesi chiuse che aperte
         false
-      }else
-      if (chars.isEmpty) {
+      }
+      else if (chars.isEmpty) {
         parOpen == 0
-      }else
-      if (chars.head == '(') {
-        parBalance(chars.tail, parOpen + 1)
-      } else
-      if (chars.head == ')') {
-        parBalance(chars.tail, parOpen - 1)
       }
-      else{
-        parBalance(chars.tail, parOpen)
-      }
+      else
+      chars.head match  {
+        case '(' => parBalance(chars.tail, parOpen + 1)
+        case ')' => parBalance(chars.tail, parOpen - 1)
+        case _ => parBalance(chars.tail, parOpen)
+        }
 
     }
 
